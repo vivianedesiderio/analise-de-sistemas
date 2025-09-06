@@ -1,24 +1,27 @@
 @startuml
 left to right direction
+actor CEO
+actor Gerente
+actor "Funcionária RH (deficiência visual)" as RH
+actor "Demais Funcionários" as Func
+actor "Sistema de Automação (IA)" as IA
+actor "Sistema de Câmeras" as Cam
 
-actor Funcionário as f
-actor IA as i
-actor Porta as p
+usecase "Abrir/Fechar portas por voz" as UC1
+usecase "Ativar/Desativar luzes e AC" as UC2
+usecase "Gerar relatórios de consumo" as UC3
+usecase "Registrar acessos" as UC4
+usecase "Monitorar câmeras de segurança" as UC5
+usecase "Configurar permissões de acesso" as UC6
 
-rectangle "Sistema de Controle de Acesso" as Sistema {
-  usecase "Cadastrar Funcionário" as UC1
-  usecase "Analisar Voz" as UC2
-  usecase "Autorizar Acesso" as UC3
-  usecase "Cadastrar voz" as UC4
-  usecase "Abrir porta" as UC5
-
-  f -- UC1
-  f -- UC4
-  f -- UC5
-  i -- UC2
-  p -- UC3
-
-  UC5 ..> UC2
-  UC2 ..> UC3
-}
+RH --> UC1
+Func --> UC2
+CEO --> UC3
+Gerente --> UC3
+IA --> UC4
+CEO --> UC5
+Gerente --> UC5
+Cam --> UC5
+CEO --> UC6
+Gerente --> UC6
 @enduml
